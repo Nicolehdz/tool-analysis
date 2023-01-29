@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Risk Analysis Tool</title>
+  <style>
+
+    .header {
+      background-color: rgb(47, 126, 190);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+   /* .logo {
+      height: 50px;
+      margin-right: 10px;
+    }*/
+
+    .risk-analysis-form {
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px #ccc;
+      margin: 20px auto;
+      width: 600px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    
+    <h1>Risk Analysis Tool</h1>
+  </div>
+
+  <div class="risk-analysis-form">
+    <form>
+      <div class="form-group">
+        <label>Question 1:  In general how would you best friend describe you as a risk taker?</label>
+        <input type="radio" name="q1" value="0" onclick="calculateScore(4)">A real gambler
+        <input type="radio" name="q1" value="2" onclick="calculateScore(3)">Willing to take risks after completing adequate research
+        <input type="radio" name="q1" value="4" onclick="calculateScore(2)">Cautious
+        <input type="radio" name="q1" value="6" onclick="calculateScore(1)">A real risk avoider 
+        
+      </div>
+      <div class="form-group">
+        <label>Question 2: You are on a TV game show and can choose one of the following. Which would you take?</label>
+        <input type="radio" name="q2" value="0" onclick="calculateScore(1)">$1,000 in cash
+        <input type="radio" name="q2" value="2" onclick="calculateScore(2)">A 50% chance at winning $5,000
+        <input type="radio" name="q2" value="4" onclick="calculateScore(3)">A 25% chance at winning $10,000
+        <input type="radio" name="q2" value="6" onclick="calculateScore(4)">A 5% chance at winning $100,000
+      
+      <div class="form-group">
+        <label>Question 3: You have just finished saving for a “once-in-a-lifetime” vacation. Three weeks before you plan to leave, you lose your job, you would:</label>
+        <input type="radio" name="q3" value="0" onclick="calculateScore(1)">Cancel the vacation.
+        <input type="radio" name="q3" value="2" onclick="calculateScore(2)">Take a much more modest vacation
+        <input type="radio" name="q3" value="4" onclick="calculateScore(3)">Go as scheduled, reasoning that you need the time to prepare for a job search.
+        <input type="radio" name="q3" value="6" onclick="calculateScore(4)">Extend your vacation, because this might be your lasat chance to go first- class.
+ 
+      </div>
+      <div class="form-group">
+        <label>Question 4: If you unexpectedly received $20,000 to invest, what would you do?</label>
+        <input type="radio" name="q4" value="0" onclick="calculateScore(1)">Deposit it in a bank account, money market account, or an insured CD
+        <input type="radio" name="q4" value="2" onclick="calculateScore(2)">Invest it in safe high quality bonds or bond mutual funds
+        <input type="radio" name="q4" value="4" onclick="calculateScore(3)">Invest it in stocks or stock mutual funds
+      </div>
+      <div class="form-group">
+        <label>Question 5: In terms of experience, how comfortable are you investing in stocks or stock mutual funds?</label>
+        <input type="radio" name="q5" value="0" onclick="calculateScore(1)">Not at all comfortable.
+        <input type="radio" name="q5" value="2" onclick="calculateScore(2)">Somewhat comfortable
+        <input type="radio" name="q5" value="4" onclick="calculateScore(3)">Very comfortable
+      </div>
+      <div class="form-group">
+        <label>Question 6: When you think of the work “risk” which of the following words comes to mind first?</label>
+        <input type="radio" name="q6" value="0" onclick="calculateScore(1)">Loss
+        <input type="radio" name="q6" value="2" onclick="calculateScore(2)">Uncertainty
+        <input type="radio" name="q6" value="4" onclick="calculateScore(3)">Opportunity
+        <input type="radio" name="q6" value="6" onclick="calculateScore(4)">Thrill
+      </div>
+      <div class="form-group">
+        <label>Question 7: Some experts are predicting prices of assets such as gold, jewels, collectibles, and real estate (hand assets) to increase in value; bond prices may fall, however, experts tend to agree that government bonds are relatively safe. Most of your investment assets are now in high interest governmental bonds. What would you do?</label>
+        <input type="radio" name="q7" value="0" onclick="calculateScore(1)">Hold the bonds
+        <input type="radio" name="q7" value="2" onclick="calculateScore(2)">Sell the bonds, put half the proceeds into money market accounts, and the other half into hard assets
+        <input type="radio" name="q7" value="4" onclick="calculateScore(3)">Sell the bonds and put the total proceeds into hard assets
+        <input type="radio" name="q7" value="6" onclick="calculateScore(4)">Sell the bonds, put all the money into hard assets, and borrow additional money to buy more
+      </div>
+      <div class="form-group">
+        <label>Question 8: Given the best and worst case returns of the four investment choices below, which would you prefer?</label>
+        <input type="radio" name="q8" value="0" onclick="calculateScore(1)">$200 gain best case; $0 gain/loss worst case
+        <input type="radio" name="q8" value="2" onclick="calculateScore(2)">$800 gain best case; $200 loss worst case
+        <input type="radio" name="q8" value="4" onclick="calculateScore(3)">$2,600 gain best case; $800 loss worst case
+        <input type="radio" name="q8" value="6" onclick="calculateScore(4)">$4,800 gain best case; $2,400 loss worst case
+      </div>
+      <div class="form-group">
+        <label>Question 9: In addition to whatever you own, you have been given $1,000. You are now asked to choose between:</label>
+        <input type="radio" name="q9" value="0" onclick="calculateScore(1)">A sure gain of $500
+        <input type="radio" name="q9" value="2" onclick="calculateScore(2)">A 50% chance to $1,000 and a 50% chance to gain nothing
+      </div>
+      <div class="form-group">
+        <label>Question 10: In additional to whatever you own, you have been given $2,000. You are now asked to choose between:</label>
+        <input type="radio" name="q10" value="0" onclick="calculateScore(1)">A sure loss of $500
+        <input type="radio" name="q10" value="2" onclick="calculateScore(2)">A 50% chance to lose $1,000 and a 50% chance to lose nothing
+      </div>
+      <div class="form-group">
+        <label>Question 11: Suppose a relative left you an inheritance of $100,000, stipulating in the will that you invest ALL the money in ONE of the following choices. Which one would you select?</label>
+        <input type="radio" name="q11" value="0" onclick="calculateScore(1)">A savings account or money market mutual fund
+        <input type="radio" name="q11" value="2" onclick="calculateScore(2)">A mutual fund that owns stocks and bonds
+        <input type="radio" name="q11" value="4" onclick="calculateScore(3)">A portfolio of 15 common stocks
+        <input type="radio" name="q11" value="6" onclick="calculateScore(4)">Commodities like gold, silver and oil
+      </div>
+      <div class="form-group">
+        <label>Question 12: If you had to invest $20,000, which of the following investment choices would you find most appealing?</label>
+        <input type="radio" name="q12" value="0" onclick="calculateScore(1)">60% in low-risk investments, 30% in medium-risk investments, 10% in high-risk investments
+        <input type="radio" name="q12" value="2" onclick="calculateScore(2)">30% in low-risk investments, 40% in medium-risk investments, 30% in high-risk investments
+        <input type="radio" name="q12" value="4" onclick="calculateScore(3)">10% in low-risk investments, 40% in medium-risk investments, 50% in high-risk investments
+      </div>
+      <div class="form-group">
+        <label>Question 13: Your trusted friend and neighbor, an experienced geologist, is putting together a group of investors to fund an exploratory gold mining venture. The venture could pay back 50 to 100 times the investment if successful. If the mine is a bust, the entire investment is worthless. Your friend estimates the chance of success is only 20%. If you had the money, how much would you invest?</label>
+        <input type="radio" name="q13" value="0" onclick="calculateScore(1)">Nothing.
+        <input type="radio" name="q13" value="2" onclick="calculateScore(2)">One months salary
+        <input type="radio" name="q13" value="4" onclick="calculateScore(3)">Three months salary
+        <input type="radio" name="q13" value="6" onclick="calculateScore(4)">Six months salary
+      <div id="result"></div>
+    </form>
+  </div>
+
+  <script>
+    let score = 0;
+    function calculateScore(points) {
+      score += points;
+    }
+
+  </script>
+</body>
+</html>
